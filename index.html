@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BLOCK 01</title>
+<meta name="theme-color" content="#0A0F14">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BLOCK 01">
+<meta name="description" content="Block 01 training log — instrument-cluster trainer for a 7-day hypertrophy block.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#0A0F14;
+  --panel:#121A21;
+  --panel2:#18222B;
+  --line:#23313C;
+  --txt:#E8EFF4;
+  --dim:#7F919E;
+  --dimmer:#546471;
+  --amber:#F2A93B;
+  --jade:#3FB68B;
+  --rust:#C4623D;
+
+  --disp:"Saira Condensed","Arial Narrow",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+
+  --hdr:96px;
+  --ftr:58px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--txt);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding-left:var(--safe-l);
+  padding-right:var(--safe-r);
+}
+button,input,textarea{font:inherit;color:inherit;background:none;border:none;border-radius:0}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+input,textarea{-webkit-appearance:none;appearance:none}
+
+.disp{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- header ---------- */
+#hdr{
+  position:sticky;top:0;z-index:40;
+  background:var(--ink);
+  border-bottom:1px solid var(--line);
+  padding:calc(var(--safe-t) + 10px) 12px 0;
+}
+.hdr-row{display:flex;align-items:baseline;gap:10px}
+.wordmark{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:22px;line-height:1}
+.hdr-spacer{flex:1}
+.hdr-stat{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--dimmer);text-transform:uppercase;font-variant-numeric:tabular-nums}
+.hdr-stat b{color:var(--dim);font-weight:500}
+
+/* ---------- session gauge ---------- */
+#gaugeWrap{padding:9px 0 10px}
+#gauge{position:relative;height:12px;background:var(--panel);border:1px solid var(--line);border-radius:2px;overflow:hidden}
+#gaugeFill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#C98A2C,var(--amber));transition:width .22s linear,background .22s linear}
+#gauge.full #gaugeFill{background:linear-gradient(90deg,#2F8E6C,var(--jade))}
+#gaugeTicks{position:absolute;inset:0;display:flex;pointer-events:none}
+#gaugeTicks i{flex:1 1 0;border-right:1px solid var(--ink);opacity:.85}
+#gaugeTicks i:last-child{border-right:0}
+.gauge-meta{display:flex;justify-content:space-between;padding-top:5px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--dimmer);text-transform:uppercase;font-variant-numeric:tabular-nums}
+
+/* ---------- day tabs ---------- */
+#tabs{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;padding-bottom:9px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;min-width:78px;
+  background:var(--panel);border:1px solid var(--line);border-radius:2px;
+  padding:6px 9px 7px;text-align:left;
+  transition:background .15s linear,border-color .15s linear;
+}
+.tab .t-tag{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.11em;color:var(--dimmer)}
+.tab .t-name{display:block;font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;font-size:13px;line-height:1.2;color:var(--dim);white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--panel2);border-color:var(--dim)}
+.tab[aria-selected="true"] .t-name{color:var(--txt)}
+.tab[aria-selected="true"] .t-tag{color:var(--dim)}
+.tab.done{border-color:var(--jade)}
+.tab.done .t-tag,.tab.done .t-name{color:var(--jade)}
+
+/* ---------- main ---------- */
+main{padding:14px 12px calc(var(--ftr) + var(--safe-b) + 26px)}
+
+.banner{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--panel);border:1px solid var(--amber);border-left-width:2px;border-radius:2px;
+  padding:8px 10px;margin-bottom:14px;
+}
+.banner p{font-size:12.5px;color:var(--dim);flex:1}
+.banner b{color:var(--amber);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+.banner button{font-family:var(--mono);font-size:14px;color:var(--dimmer);padding:0 2px;line-height:1}
+
+/* day header */
+.day-h{margin-bottom:14px}
+.day-h h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:28px;line-height:1.05}
+.day-h .focus{color:var(--dim);font-size:13px;margin-top:2px}
+.statrow{display:flex;gap:0;margin-top:11px;border:1px solid var(--line);border-radius:2px;background:var(--panel)}
+.statrow div{flex:1;padding:7px 9px;border-right:1px solid var(--line)}
+.statrow div:last-child{border-right:0}
+.statrow .k{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.11em;color:var(--dimmer);text-transform:uppercase}
+.statrow .v{display:block;font-family:var(--mono);font-size:17px;font-weight:500;color:var(--txt);font-variant-numeric:tabular-nums;line-height:1.25}
+
+/* ---------- exercise card ---------- */
+.card{
+  position:relative;
+  background:var(--panel2);border:1px solid var(--line);border-radius:2px;
+  padding:11px 11px 4px;margin-bottom:10px;
+  overflow:hidden;
+}
+.card.ss{border-left:2px solid var(--rust)}
+.card.ss::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:62%;
+  background:linear-gradient(90deg,rgba(196,98,61,.10),rgba(196,98,61,0));
+  pointer-events:none;
+}
+.card>*{position:relative}
+.c-top{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.c-idx{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--dimmer)}
+.c-ss{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--rust);border:1px solid var(--rust);border-radius:2px;padding:0 4px;line-height:15px}
+.c-top .sp{flex:1}
+.c-variant{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--dimmer);text-transform:uppercase}
+.c-name{
+  display:block;width:100%;text-align:left;
+  font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+  font-size:19px;line-height:1.15;color:var(--txt);
+}
+.c-name:active{color:var(--amber)}
+.c-target{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--amber);margin-top:3px;font-variant-numeric:tabular-nums}
+.c-cue{font-size:12.5px;color:var(--dim);margin-top:6px;line-height:1.4}
+.c-meta{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dimmer);text-transform:uppercase;margin-top:7px;padding-top:7px;border-top:1px solid var(--line)}
+.c-meta.super{color:var(--rust)}
+
+/* set rows */
+.sets{margin-top:6px}
+.setrow{display:grid;grid-template-columns:22px 1fr 1fr 42px;gap:6px;align-items:center;padding:4px 0}
+.s-n{font-family:var(--mono);font-size:10px;color:var(--dimmer);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.fld{position:relative}
+.fld input{
+  width:100%;background:var(--panel);border:1px solid var(--line);border-radius:2px;
+  padding:7px 26px 7px 8px;font-family:var(--mono);font-size:14px;color:var(--txt);
+  font-variant-numeric:tabular-nums;
+}
+.fld input:focus{outline:none;border-color:var(--amber)}
+.fld input::placeholder{color:var(--dimmer);opacity:1}
+.fld span{position:absolute;right:7px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:9px;color:var(--dimmer);letter-spacing:.06em;pointer-events:none}
+.chk{
+  height:34px;border:1px solid var(--line);background:var(--panel);border-radius:2px;
+  font-family:var(--mono);font-size:14px;color:var(--dimmer);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s linear,border-color .15s linear,color .15s linear;
+}
+.chk[aria-pressed="true"]{background:var(--jade);border-color:var(--jade);color:var(--ink)}
+.setrow.done .fld input{border-color:#2A4A40}
+
+/* rest day */
+.restcard{background:var(--panel2);border:1px solid var(--line);border-radius:2px;padding:4px 12px 12px;margin-bottom:10px}
+.restcard li{list-style:none;padding:12px 0 0;border-top:1px solid var(--line);margin-top:12px;font-size:13.5px;color:var(--dim);line-height:1.45}
+.restcard li:first-child{border-top:0;margin-top:0}
+.restcard li b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.11em;color:var(--dimmer);text-transform:uppercase;margin-bottom:4px}
+
+/* section heading */
+.sec{
+  font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+  font-size:13px;color:var(--dim);margin:22px 0 8px;
+  display:flex;align-items:baseline;gap:8px;
+}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* notes */
+#notes{
+  width:100%;min-height:78px;resize:vertical;
+  background:var(--panel);border:1px solid var(--line);border-radius:2px;
+  padding:9px 10px;font-family:var(--body);font-size:13.5px;color:var(--txt);line-height:1.45;
+}
+#notes:focus{outline:none;border-color:var(--amber)}
+#notes::placeholder{color:var(--dimmer)}
+
+/* ---------- ledger ---------- */
+.ledger{border:1px solid var(--line);border-radius:2px;background:var(--panel);overflow:hidden}
+.lrow{display:grid;grid-template-columns:78px 1fr 58px;gap:9px;align-items:center;padding:7px 9px;border-top:1px solid var(--line)}
+.lrow:first-child{border-top:0}
+.lrow .lm{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--dim);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lbar{position:relative;height:9px;background:var(--ink);border:1px solid var(--line);border-radius:1px;overflow:hidden}
+.lbar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--amber);transition:width .22s linear,background .22s linear}
+.lbar.full i{background:var(--jade)}
+.lbar u{position:absolute;top:0;bottom:0;width:1px;background:var(--dimmer);opacity:.75}
+.lrow .lv{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-align:right;font-variant-numeric:tabular-nums}
+.lrow.hit .lv{color:var(--jade)}
+.ltot{display:flex;justify-content:space-between;padding-top:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dimmer);text-transform:uppercase;font-variant-numeric:tabular-nums}
+
+/* ---------- footer ---------- */
+#ftr{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  background:var(--ink);border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(5,1fr);
+  padding-bottom:var(--safe-b);
+  padding-left:var(--safe-l);padding-right:var(--safe-r);
+}
+#ftr button{
+  height:var(--ftr);border-right:1px solid var(--line);
+  font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+  font-size:11px;color:var(--dim);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  padding:0 2px;
+}
+#ftr button:last-child{border-right:0}
+#ftr button:active{background:var(--panel)}
+#ftr .fk{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--dimmer);font-weight:400}
+#timerBtn .fv{font-family:var(--mono);font-size:16px;font-weight:500;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--dim)}
+#timerBtn.run .fv{color:var(--amber)}
+#timerBtn.run .fk{color:var(--amber)}
+
+/* ---------- error state ---------- */
+#fatal{padding:calc(var(--safe-t) + 48px) 20px 40px;max-width:520px;margin:0 auto}
+#fatal h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:26px}
+#fatal .code{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--rust);text-transform:uppercase;margin-bottom:6px}
+#fatal p{color:var(--dim);font-size:13.5px;margin-top:10px}
+#fatal button{
+  margin-top:18px;background:var(--panel);border:1px solid var(--amber);border-radius:2px;
+  color:var(--amber);font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+  font-size:13px;padding:9px 18px;
+}
+.hidden{display:none !important}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<div id="fatal" class="hidden">
+  <div class="code">Load failure</div>
+  <h1>No program data</h1>
+  <p id="fatalMsg">program.json could not be fetched and no cached copy exists on this device.</p>
+  <p>Connect once so the program can be cached, then this screen will not appear again.</p>
+  <button type="button" id="retryBtn">Retry</button>
+</div>
+
+<div id="shell" class="hidden">
+  <header id="hdr">
+    <div class="hdr-row">
+      <span class="wordmark">Block 01</span>
+      <span class="hdr-spacer"></span>
+      <span class="hdr-stat">Week <b id="hWeek">—</b></span>
+      <span class="hdr-stat">Sessions <b id="hSessions">—</b></span>
+    </div>
+
+    <div id="gaugeWrap">
+      <div id="gauge">
+        <div id="gaugeFill"></div>
+        <div id="gaugeTicks"></div>
+      </div>
+      <div class="gauge-meta">
+        <span id="gaugeLabel">Session</span>
+        <span id="gaugeCount">0 / 0 sets</span>
+      </div>
+    </div>
+
+    <div id="tabs" role="tablist" aria-label="Training days"></div>
+  </header>
+
+  <main>
+    <div id="banner" class="banner hidden">
+      <p><b>Offline</b><span id="bannerMsg">Showing the cached program. Reconnect to pick up a newer week.</span></p>
+      <button type="button" id="bannerX" aria-label="Dismiss">×</button>
+    </div>
+
+    <div class="day-h">
+      <h1 id="dayName">—</h1>
+      <div class="focus" id="dayFocus"></div>
+      <div class="statrow">
+        <div><span class="k">Est. min</span><span class="v" id="stTime">—</span></div>
+        <div><span class="k">Hard sets</span><span class="v" id="stSets">—</span></div>
+        <div><span class="k">Lifts</span><span class="v" id="stLifts">—</span></div>
+      </div>
+    </div>
+
+    <div id="cards"></div>
+
+    <div class="sec" id="notesSec">Session notes</div>
+    <textarea id="notes" placeholder="Loads, aches, sleep, anything worth remembering next week."></textarea>
+
+    <div class="sec">Weekly volume</div>
+    <div class="ledger" id="ledger"></div>
+    <div class="ltot"><span>Tick mark = 10 sets</span><span id="ledgerTotal"></span></div>
+  </main>
+
+  <footer id="ftr">
+    <button type="button" id="clearBtn"><span class="fk">Day</span><span>Clear</span></button>
+    <button type="button" id="timerBtn"><span class="fk">Rest</span><span class="fv" id="timerVal">0:00</span></button>
+    <button type="button" id="exportBtn"><span class="fk">Data</span><span>Export</span></button>
+    <button type="button" id="importBtn"><span class="fk">Data</span><span>Import</span></button>
+    <button type="button" id="weekBtn"><span class="fk">Block</span><span>New week</span></button>
+  </footer>
+</div>
+
+<input type="file" id="filePicker" accept="application/json,.json" class="hidden">
+
+<script>
+(function () {
+  "use strict";
+
+  var KEY = "omni_block01_v2";
+  var CACHE_KEY = "omni_block01_program";
+  var MANUAL_REST = 90;
+
+  /* ---------------------------------------------------------------
+     storage — every read and write guarded, in-memory fallback
+  --------------------------------------------------------------- */
+  var store = (function () {
+    var memory = {};
+    var live = false;
+    try {
+      var probe = "__b01_probe__";
+      window.localStorage.setItem(probe, "1");
+      window.localStorage.removeItem(probe);
+      live = true;
+    } catch (e) { live = false; }
+
+    return {
+      get: function (k) {
+        if (live) {
+          try { return window.localStorage.getItem(k); }
+          catch (e) { live = false; }
+        }
+        return Object.prototype.hasOwnProperty.call(memory, k) ? memory[k] : null;
+      },
+      set: function (k, v) {
+        if (live) {
+          try { window.localStorage.setItem(k, v); return true; }
+          catch (e) { live = false; }
+        }
+        memory[k] = v;
+        return false;
+      }
+    };
+  })();
+
+  /* ---------------------------------------------------------------
+     state
+  --------------------------------------------------------------- */
+  function blankState(week) {
+    var w = (typeof week === "number" && isFinite(week) && week >= 1) ? Math.floor(week) : 1;
+    return { week: w, log: {}, notes: {}, alt: {}, history: {} };
+  }
+
+  function loadState() {
+    var raw = store.get(KEY);
+    if (!raw) return blankState();
+    var parsed;
+    try { parsed = JSON.parse(raw); } catch (e) { return blankState(); }
+    if (!parsed || typeof parsed !== "object") return blankState();
+    var s = blankState(parsed.week);
+    if (parsed.log && typeof parsed.log === "object") s.log = parsed.log;
+    if (parsed.notes && typeof parsed.notes === "object") s.notes = parsed.notes;
+    if (parsed.alt && typeof parsed.alt === "object") s.alt = parsed.alt;
+    if (parsed.history && typeof parsed.history === "object") s.history = parsed.history;
+    return s;
+  }
+
+  function saveState() {
+    try { store.set(KEY, JSON.stringify(state)); }
+    catch (e) { /* state stays in memory; app keeps running */ }
+  }
+
+  var program = null;
+  var state = blankState();
+  var dayIndex = 0;
+  var usingCache = false;
+
+  /* ---------------------------------------------------------------
+     helpers
+  --------------------------------------------------------------- */
+  function $(id) { return document.getElementById(id); }
+
+  function esc(v) {
+    return String(v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  function pad2(n) { return n < 10 ? "0" + n : String(n); }
+
+  function isoDate(d) {
+    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+  }
+
+  function logKey(dayId, exIdx, setIdx) { return dayId + "|" + exIdx + "|" + setIdx; }
+
+  function trainingDays() {
+    return program.days.filter(function (d) { return !d.rest; });
+  }
+
+  function daySetCount(day) {
+    if (day.rest || !day.ex) return 0;
+    return day.ex.reduce(function (a, e) { return a + e.s; }, 0);
+  }
+
+  function dayLogged(day) {
+    if (day.rest || !day.ex) return 0;
+    var n = 0;
+    for (var i = 0; i < day.ex.length; i++) {
+      for (var j = 0; j < day.ex[i].s; j++) {
+        var rec = state.log[logKey(day.id, i, j)];
+        if (rec && rec.d) n++;
+      }
+    }
+    return n;
+  }
+
+  function dayComplete(day) {
+    var total = daySetCount(day);
+    return total > 0 && dayLogged(day) === total;
+  }
+
+  function variantsFor(ex) {
+    return [ex.n].concat(Array.isArray(ex.alt) ? ex.alt : []);
+  }
+
+  function variantIndex(dayId, exIdx) {
+    var v = state.alt[dayId + "|" + exIdx];
+    return typeof v === "number" && v >= 0 ? v : 0;
+  }
+
+  function totalLoggedSets() {
+    var n = 0;
+    for (var k in state.log) {
+      if (Object.prototype.hasOwnProperty.call(state.log, k) && state.log[k] && state.log[k].d) n++;
+    }
+    return n;
+  }
+
+  /* ---------------------------------------------------------------
+     boot
+  --------------------------------------------------------------- */
+  function boot() {
+    fetch("./program.json", { cache: "no-cache" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.text();
+      })
+      .then(function (text) {
+        var parsed = JSON.parse(text);
+        validateProgram(parsed);
+        store.set(CACHE_KEY, text);
+        usingCache = false;
+        start(parsed);
+      })
+      .catch(function (err) {
+        var cached = store.get(CACHE_KEY);
+        if (cached) {
+          try {
+            var parsed = JSON.parse(cached);
+            validateProgram(parsed);
+            usingCache = true;
+            start(parsed);
+            return;
+          } catch (e) { /* fall through to fatal */ }
+        }
+        fatal(err);
+      });
+  }
+
+  function validateProgram(p) {
+    if (!p || typeof p !== "object") throw new Error("program is not an object");
+    if (!Array.isArray(p.days) || !p.days.length) throw new Error("program.days missing");
+    if (!p.targets || typeof p.targets !== "object") throw new Error("program.targets missing");
+    if (typeof p.week !== "number") throw new Error("program.week missing");
+  }
+
+  function fatal(err) {
+    $("shell").classList.add("hidden");
+    $("fatal").classList.remove("hidden");
+    $("fatalMsg").textContent =
+      "program.json could not be fetched (" + (err && err.message ? err.message : "unknown error") +
+      ") and no cached copy exists on this device.";
+  }
+
+  function start(p) {
+    program = p;
+    state = loadState();
+
+    /* week rollover — archive, never delete history */
+    if (program.week > state.week) {
+      var old = state.week;
+      if (!state.history || typeof state.history !== "object") state.history = {};
+      state.history[old] = { log: state.log, notes: state.notes };
+      state.log = {};
+      state.notes = {};
+      state.week = program.week;
+    }
+    /* persist once on boot so a normalised or rolled-over week never
+       diverges from what is actually in storage */
+    saveState();
+
+    $("fatal").classList.add("hidden");
+    $("shell").classList.remove("hidden");
+
+    if (usingCache) $("banner").classList.remove("hidden");
+
+    buildTabs();
+    buildLedger();
+    selectDay(firstUnfinishedDay());
+    updateHeader();
+    wire();
+  }
+
+  function firstUnfinishedDay() {
+    for (var i = 0; i < program.days.length; i++) {
+      if (!program.days[i].rest && !dayComplete(program.days[i])) return i;
+    }
+    return 0;
+  }
+
+  /* ---------------------------------------------------------------
+     tabs
+  --------------------------------------------------------------- */
+  function buildTabs() {
+    var host = $("tabs");
+    host.innerHTML = "";
+    program.days.forEach(function (d, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "tab";
+      b.setAttribute("role", "tab");
+      b.dataset.i = String(i);
+      b.innerHTML =
+        '<span class="t-tag">' + esc(d.tag) + "</span>" +
+        '<span class="t-name">' + esc(d.name) + "</span>";
+      b.addEventListener("click", function () { selectDay(i); });
+      host.appendChild(b);
+    });
+    updateTabs();
+  }
+
+  function updateTabs() {
+    var kids = $("tabs").children;
+    for (var i = 0; i < kids.length; i++) {
+      var d = program.days[i];
+      kids[i].setAttribute("aria-selected", i === dayIndex ? "true" : "false");
+      kids[i].classList.toggle("done", dayComplete(d));
+    }
+  }
+
+  /* ---------------------------------------------------------------
+     day render
+  --------------------------------------------------------------- */
+  function selectDay(i) {
+    dayIndex = i;
+    var day = program.days[i];
+
+    $("dayName").textContent = day.name;
+    $("dayFocus").textContent = day.focus || "";
+
+    var sets = daySetCount(day);
+    $("stTime").textContent = day.time ? day.time : "—";
+    $("stSets").textContent = sets ? sets : "—";
+    $("stLifts").textContent = day.ex ? day.ex.length : "—";
+
+    renderCards(day);
+
+    var notesSec = $("notesSec");
+    var notes = $("notes");
+    if (day.rest) {
+      notesSec.classList.add("hidden");
+      notes.classList.add("hidden");
+    } else {
+      notesSec.classList.remove("hidden");
+      notes.classList.remove("hidden");
+      notes.value = state.notes[day.id] || "";
+    }
+
+    buildGaugeTicks(sets);
+    updateGauge();
+    updateTabs();
+    updateLedger();
+    window.scrollTo(0, 0);
+  }
+
+  function renderCards(day) {
+    var host = $("cards");
+    host.innerHTML = "";
+
+    if (day.rest) {
+      var box = document.createElement("div");
+      box.className = "restcard";
+      var lines = Array.isArray(day.lines) ? day.lines : [];
+      var labels = ["Walk", "Mobility", "Sleep", "Photo"];
+      var html = "<ul>";
+      lines.forEach(function (t, i) {
+        html += "<li><b>" + esc(labels[i] || ("Line " + (i + 1))) + "</b>" + esc(t) + "</li>";
+      });
+      html += "</ul>";
+      box.innerHTML = html;
+      host.appendChild(box);
+      return;
+    }
+
+    day.ex.forEach(function (ex, ei) {
+      host.appendChild(exerciseCard(day, ex, ei));
+    });
+  }
+
+  function exerciseCard(day, ex, ei) {
+    var card = document.createElement("article");
+    card.className = "card" + (ex.ss ? " ss" : "");
+
+    var variants = variantsFor(ex);
+    var vi = Math.min(variantIndex(day.id, ei), variants.length - 1);
+
+    var meta = ex.rest === 0
+      ? '<div class="c-meta super">Superset &rarr; Next</div>'
+      : '<div class="c-meta">' + esc(ex.m) + " &middot; " + esc(ex.rir) + " RIR &middot; Rest " + esc(ex.rest) + " S</div>";
+
+    card.innerHTML =
+      '<div class="c-top">' +
+        '<span class="c-idx">' + pad2(ei + 1) + "</span>" +
+        (ex.ss ? '<span class="c-ss">' + esc(ex.ss) + "</span>" : "") +
+        '<span class="sp"></span>' +
+        '<span class="c-variant" data-v>Variant ' + (vi + 1) + " / " + variants.length + "</span>" +
+      "</div>" +
+      '<button type="button" class="c-name" data-name>' + esc(variants[vi]) + "</button>" +
+      '<div class="c-target">' + esc(ex.s) + " &times; " + esc(ex.r) + "</div>" +
+      '<div class="c-cue">' + esc(ex.cue) + "</div>" +
+      meta +
+      '<div class="sets"></div>';
+
+    /* variant cycling */
+    card.querySelector("[data-name]").addEventListener("click", function () {
+      var next = (variantIndex(day.id, ei) + 1) % variants.length;
+      state.alt[day.id + "|" + ei] = next;
+      saveState();
+      card.querySelector("[data-name]").textContent = variants[next];
+      card.querySelector("[data-v]").textContent = "Variant " + (next + 1) + " / " + variants.length;
+    });
+
+    var sets = card.querySelector(".sets");
+    for (var j = 0; j < ex.s; j++) sets.appendChild(setRow(day, ex, ei, j));
+    return card;
+  }
+
+  function setRow(day, ex, ei, si) {
+    var key = logKey(day.id, ei, si);
+    var rec = state.log[key] || {};
+
+    var row = document.createElement("div");
+    row.className = "setrow" + (rec.d ? " done" : "");
+    row.innerHTML =
+      '<span class="s-n">' + (si + 1) + "</span>" +
+      '<label class="fld"><input type="text" inputmode="decimal" autocomplete="off" placeholder="—" data-w aria-label="Set ' + (si + 1) + ' weight in kilograms"><span>KG</span></label>' +
+      '<label class="fld"><input type="text" inputmode="numeric" autocomplete="off" placeholder="—" data-r aria-label="Set ' + (si + 1) + ' reps"><span>REPS</span></label>' +
+      '<button type="button" class="chk" data-c aria-pressed="' + (rec.d ? "true" : "false") + '" aria-label="Complete set ' + (si + 1) + '">' + (rec.d ? "✓" : "·") + "</button>";
+
+    var wIn = row.querySelector("[data-w]");
+    var rIn = row.querySelector("[data-r]");
+    var btn = row.querySelector("[data-c]");
+
+    wIn.value = rec.w != null ? rec.w : "";
+    rIn.value = rec.r != null ? rec.r : "";
+
+    function persist() {
+      var cur = state.log[key] || {};
+      cur.w = wIn.value.trim();
+      cur.r = rIn.value.trim();
+      if (cur.d == null) cur.d = false;
+      if (!cur.w && !cur.r && !cur.d) delete state.log[key];
+      else state.log[key] = cur;
+      saveState();
+    }
+
+    wIn.addEventListener("input", persist);
+    rIn.addEventListener("input", persist);
+
+    btn.addEventListener("click", function () {
+      var cur = state.log[key] || { w: wIn.value.trim(), r: rIn.value.trim() };
+      cur.d = !cur.d;
+      if (!cur.w && !cur.r && !cur.d) delete state.log[key];
+      else state.log[key] = cur;
+      saveState();
+
+      btn.setAttribute("aria-pressed", cur.d ? "true" : "false");
+      btn.textContent = cur.d ? "✓" : "·";
+      row.classList.toggle("done", !!cur.d);
+
+      if (cur.d && ex.rest > 0) startTimer(ex.rest);
+
+      updateGauge();
+      updateTabs();
+      updateLedger();
+      updateHeader();
+    });
+
+    return row;
+  }
+
+  /* ---------------------------------------------------------------
+     gauge
+  --------------------------------------------------------------- */
+  function buildGaugeTicks(n) {
+    var host = $("gaugeTicks");
+    host.innerHTML = "";
+    for (var i = 0; i < n; i++) host.appendChild(document.createElement("i"));
+  }
+
+  function updateGauge() {
+    var day = program.days[dayIndex];
+    var total = daySetCount(day);
+    var done = dayLogged(day);
+    var pct = total ? (done / total) * 100 : 0;
+
+    $("gaugeFill").style.width = pct + "%";
+    $("gauge").classList.toggle("full", total > 0 && done === total);
+    $("gaugeLabel").textContent = day.rest ? "Rest day" : day.tag + " session";
+    $("gaugeCount").textContent = total ? done + " / " + total + " sets" : "no sets";
+  }
+
+  function updateHeader() {
+    $("hWeek").textContent = state.week;
+    var days = trainingDays();
+    var done = days.filter(dayComplete).length;
+    $("hSessions").textContent = done + " / " + days.length;
+  }
+
+  /* ---------------------------------------------------------------
+     ledger
+  --------------------------------------------------------------- */
+  function muscleKeys() {
+    return Object.keys(program.targets);
+  }
+
+  function buildLedger() {
+    var host = $("ledger");
+    host.innerHTML = "";
+    muscleKeys().forEach(function (m) {
+      var row = document.createElement("div");
+      row.className = "lrow";
+      row.dataset.m = m;
+      row.innerHTML =
+        '<span class="lm">' + esc(m) + "</span>" +
+        '<span class="lbar"><i></i><u></u></span>' +
+        '<span class="lv">0 / ' + esc(program.targets[m]) + "</span>";
+      host.appendChild(row);
+    });
+    updateLedger();
+  }
+
+  function loggedByMuscle() {
+    var tally = {};
+    muscleKeys().forEach(function (m) { tally[m] = 0; });
+    program.days.forEach(function (day) {
+      if (day.rest || !day.ex) return;
+      day.ex.forEach(function (ex, ei) {
+        for (var j = 0; j < ex.s; j++) {
+          var rec = state.log[logKey(day.id, ei, j)];
+          if (rec && rec.d && tally[ex.m] != null) tally[ex.m]++;
+        }
+      });
+    });
+    return tally;
+  }
+
+  function updateLedger() {
+    var tally = loggedByMuscle();
+    var rows = $("ledger").children;
+    var sumLogged = 0, sumTarget = 0;
+
+    for (var i = 0; i < rows.length; i++) {
+      var m = rows[i].dataset.m;
+      var target = program.targets[m];
+      var got = tally[m] || 0;
+      sumLogged += got;
+      sumTarget += target;
+
+      var scale = Math.max(target, got, 10);
+      var bar = rows[i].querySelector(".lbar");
+      bar.querySelector("i").style.width = Math.min(100, (got / scale) * 100) + "%";
+      bar.querySelector("u").style.left = Math.min(100, (10 / scale) * 100) + "%";
+      bar.classList.toggle("full", got >= target);
+      rows[i].querySelector(".lv").textContent = got + " / " + target;
+      rows[i].classList.toggle("hit", got >= target);
+    }
+    $("ledgerTotal").textContent = sumLogged + " / " + sumTarget + " sets";
+  }
+
+  /* ---------------------------------------------------------------
+     rest timer
+  --------------------------------------------------------------- */
+  var timerId = null;
+  var timerLeft = 0;
+
+  function paintTimer() {
+    var m = Math.floor(timerLeft / 60);
+    var s = timerLeft % 60;
+    $("timerVal").textContent = m + ":" + pad2(s);
+    $("timerBtn").classList.toggle("run", timerId !== null);
+  }
+
+  function stopTimer() {
+    if (timerId !== null) { clearInterval(timerId); timerId = null; }
+    timerLeft = 0;
+    paintTimer();
+  }
+
+  function startTimer(seconds) {
+    if (timerId !== null) { clearInterval(timerId); timerId = null; }
+    timerLeft = seconds;
+    timerId = setInterval(function () {
+      timerLeft--;
+      if (timerLeft <= 0) {
+        clearInterval(timerId);
+        timerId = null;
+        timerLeft = 0;
+        if (navigator.vibrate) { try { navigator.vibrate([120, 60, 120]); } catch (e) {} }
+      }
+      paintTimer();
+    }, 1000);
+    paintTimer();
+  }
+
+  /* ---------------------------------------------------------------
+     export / import
+  --------------------------------------------------------------- */
+  function exportPayload() {
+    return {
+      week: state.week,
+      exported: new Date().toISOString(),
+      log: state.log,
+      notes: state.notes,
+      alt: state.alt,
+      history: state.history
+    };
+  }
+
+  function doExport() {
+    var payload = exportPayload();
+    var text = JSON.stringify(payload, null, 2);
+    var name = "block01-week" + state.week + "-" + isoDate(new Date()) + ".json";
+    var file = null;
+
+    try { file = new File([text], name, { type: "application/json" }); } catch (e) { file = null; }
+
+    if (file && navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
+      navigator.share({ files: [file], title: name })
+        .catch(function () { download(text, name); });
+      return;
+    }
+    download(text, name);
+  }
+
+  function download(text, name) {
+    var blob = new Blob([text], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+  }
+
+  function doImport(file) {
+    var reader = new FileReader();
+    reader.onerror = function () { window.alert("Import failed: the file could not be read."); };
+    reader.onload = function () {
+      var data;
+      try { data = JSON.parse(String(reader.result)); }
+      catch (e) { window.alert("Import rejected: that file is not valid JSON."); return; }
+
+      if (!data || typeof data !== "object" || Array.isArray(data)) {
+        window.alert("Import rejected: expected a Block 01 export object."); return;
+      }
+      if (!data.log || typeof data.log !== "object" || Array.isArray(data.log)) {
+        window.alert("Import rejected: no “log” section in that file."); return;
+      }
+
+      var restored = 0;
+      for (var k in data.log) {
+        if (!Object.prototype.hasOwnProperty.call(data.log, k)) continue;
+        var rec = data.log[k];
+        if (!rec || typeof rec !== "object") continue;
+        if (!/^[^|]+\|\d+\|\d+$/.test(k)) continue;
+        state.log[k] = { w: rec.w != null ? rec.w : "", r: rec.r != null ? rec.r : "", d: !!rec.d };
+        if (rec.d) restored++;
+      }
+      if (data.notes && typeof data.notes === "object") {
+        for (var n in data.notes) {
+          if (Object.prototype.hasOwnProperty.call(data.notes, n)) state.notes[n] = String(data.notes[n]);
+        }
+      }
+      if (data.alt && typeof data.alt === "object") {
+        for (var a in data.alt) {
+          if (Object.prototype.hasOwnProperty.call(data.alt, a)) state.alt[a] = data.alt[a];
+        }
+      }
+      if (data.history && typeof data.history === "object") {
+        for (var h in data.history) {
+          if (Object.prototype.hasOwnProperty.call(data.history, h)) state.history[h] = data.history[h];
+        }
+      }
+      if (typeof data.week === "number" && data.week > state.week) state.week = data.week;
+
+      saveState();
+      selectDay(dayIndex);
+      updateHeader();
+      window.alert("Import complete — " + restored + (restored === 1 ? " set" : " sets") + " restored.");
+    };
+    reader.readAsText(file);
+  }
+
+  /* ---------------------------------------------------------------
+     footer actions
+  --------------------------------------------------------------- */
+  function clearDay() {
+    var day = program.days[dayIndex];
+    if (day.rest) { window.alert("Day 7 is a rest day — nothing to clear."); return; }
+    if (!window.confirm("Clear every logged set for " + day.tag + " — " + day.name + "?")) return;
+
+    day.ex.forEach(function (ex, ei) {
+      for (var j = 0; j < ex.s; j++) delete state.log[logKey(day.id, ei, j)];
+    });
+    saveState();
+    selectDay(dayIndex);
+    updateHeader();
+  }
+
+  function newWeek() {
+    if (!window.confirm("Archive week " + state.week + " and start week " + (state.week + 1) + "?")) return;
+    if (!state.history || typeof state.history !== "object") state.history = {};
+    state.history[state.week] = { log: state.log, notes: state.notes };
+    state.log = {};
+    state.notes = {};
+    state.week = state.week + 1;
+    saveState();
+    stopTimer();
+    selectDay(0);
+    updateHeader();
+  }
+
+  /* ---------------------------------------------------------------
+     wiring
+  --------------------------------------------------------------- */
+  var wired = false;
+  function wire() {
+    if (wired) return;   /* a retry re-runs start(); listeners bind once */
+    wired = true;
+
+    $("notes").addEventListener("input", function () {
+      state.notes[program.days[dayIndex].id] = this.value;
+      saveState();
+    });
+
+    $("bannerX").addEventListener("click", function () { $("banner").classList.add("hidden"); });
+
+    $("timerBtn").addEventListener("click", function () {
+      if (timerId !== null) stopTimer(); else startTimer(MANUAL_REST);
+    });
+
+    $("clearBtn").addEventListener("click", clearDay);
+    $("weekBtn").addEventListener("click", newWeek);
+    $("exportBtn").addEventListener("click", doExport);
+
+    $("importBtn").addEventListener("click", function () { $("filePicker").click(); });
+    $("filePicker").addEventListener("change", function () {
+      if (this.files && this.files[0]) doImport(this.files[0]);
+      this.value = "";
+    });
+
+    paintTimer();
+  }
+
+  $("retryBtn").addEventListener("click", function () {
+    $("fatal").classList.add("hidden");
+    boot();
+  });
+
+  boot();
+})();
+</script>
+</body>
+</html>

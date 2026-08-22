@@ -1,0 +1,492 @@
+{
+  "week": 1,
+  "generated": "2026-08-22",
+  "targets": {
+    "Chest": 14,
+    "Back": 18,
+    "Quads": 11,
+    "Hamstrings": 10,
+    "Side Delts": 8,
+    "Rear Delts": 11,
+    "Front Delts": 4,
+    "Biceps": 8,
+    "Triceps": 9,
+    "Calves": 6,
+    "Core": 14
+  },
+  "days": [
+    {
+      "id": "d1",
+      "tag": "DAY 1",
+      "name": "Push A",
+      "focus": "Chest-dominant · triceps · side delts",
+      "time": 42,
+      "ex": [
+        {
+          "n": "Incline DB Press (30°)",
+          "alt": ["Incline Smith Press", "Incline Machine Press"],
+          "s": 4,
+          "r": "6–9",
+          "rir": 2,
+          "rest": 120,
+          "m": "Chest",
+          "ss": "A",
+          "cue": "Stop 1–2 cm above chest, no bounce. Elbows ~45°. Own the stretch for a full second."
+        },
+        {
+          "n": "Cable Lateral Raise",
+          "alt": ["DB Lateral Raise", "Machine Lateral Raise"],
+          "s": 4,
+          "r": "12–15",
+          "rir": 1,
+          "rest": 0,
+          "m": "Side Delts",
+          "ss": "A",
+          "cue": "Cable behind the back, lean away. Start from the deep stretch across the body."
+        },
+        {
+          "n": "Weighted Dip",
+          "alt": ["Flat Machine Press", "Flat DB Press"],
+          "s": 3,
+          "r": "8–12",
+          "rir": 1,
+          "rest": 105,
+          "m": "Chest",
+          "ss": "B",
+          "cue": "Torso forward ~30°, descend until shoulders sit below elbows."
+        },
+        {
+          "n": "Face Pull",
+          "alt": ["Rear Delt Cable Fly", "Band Pull-Apart"],
+          "s": 3,
+          "r": "15–20",
+          "rir": 2,
+          "rest": 0,
+          "m": "Rear Delts",
+          "ss": "B",
+          "cue": "Pull to eyebrow height, externally rotate at the end. Light — this is shoulder insurance."
+        },
+        {
+          "n": "Deep Cable Fly (low-to-high)",
+          "alt": ["Pec Deck", "Flat DB Fly"],
+          "s": 2,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 75,
+          "m": "Chest",
+          "cue": "Let the arms travel past the torso line. Stretch is the whole point."
+        },
+        {
+          "n": "Overhead Cable Triceps Ext.",
+          "alt": ["Overhead EZ Extension", "Incline Skull Crusher"],
+          "s": 4,
+          "r": "10–12",
+          "rir": 1,
+          "rest": 70,
+          "m": "Triceps",
+          "cue": "Elbows locked high, full stretch behind the head. Lengthened = long head grows."
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "tag": "DAY 2",
+      "name": "Pull A",
+      "focus": "Vertical · lats · biceps · core",
+      "time": 44,
+      "ex": [
+        {
+          "n": "Weighted Pull-up",
+          "alt": ["Lat Pulldown (wide)", "Assisted Pull-up"],
+          "s": 4,
+          "r": "6–10",
+          "rir": 2,
+          "rest": 120,
+          "m": "Back",
+          "ss": "A",
+          "cue": "Dead hang every rep. Drive elbows down and back, chest to the bar."
+        },
+        {
+          "n": "Hanging Leg Raise",
+          "alt": ["Captain's Chair Raise", "Reverse Crunch"],
+          "s": 3,
+          "r": "10–15",
+          "rir": 1,
+          "rest": 0,
+          "m": "Core",
+          "ss": "A",
+          "cue": "Curl the pelvis up at the top. No swinging — 2 s down."
+        },
+        {
+          "n": "Chest-Supported Row",
+          "alt": ["Seated Cable Row", "Machine Row"],
+          "s": 3,
+          "r": "8–12",
+          "rir": 1,
+          "rest": 105,
+          "m": "Back",
+          "ss": "B",
+          "cue": "Full protraction at the bottom, squeeze 1 s at the top."
+        },
+        {
+          "n": "Reverse Pec Deck",
+          "alt": ["Bent-over DB Rear Fly", "Cable Rear Delt Fly"],
+          "s": 3,
+          "r": "15–20",
+          "rir": 1,
+          "rest": 0,
+          "m": "Rear Delts",
+          "ss": "B",
+          "cue": "Thumbs back, no shrug. Rear delts respond to reps, not load."
+        },
+        {
+          "n": "Straight-Arm Pulldown",
+          "alt": ["Dumbbell Pullover", "Cable Pullover (kneeling)"],
+          "s": 2,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 70,
+          "m": "Back",
+          "cue": "Hinge slightly, arms long overhead. Pure lat stretch."
+        },
+        {
+          "n": "Incline DB Curl",
+          "alt": ["Bayesian Cable Curl", "Preacher Curl"],
+          "s": 3,
+          "r": "8–12",
+          "rir": 1,
+          "rest": 70,
+          "m": "Biceps",
+          "ss": "C",
+          "cue": "Bench at 45–60°, arm hangs behind the torso. Full straighten at the bottom."
+        },
+        {
+          "n": "Cable Hammer Curl",
+          "alt": ["DB Hammer Curl", "Reverse Curl"],
+          "s": 2,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 0,
+          "m": "Biceps",
+          "ss": "C",
+          "cue": "Neutral grip — this is the brachialis, it pushes the biceps up."
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "tag": "DAY 3",
+      "name": "Legs A",
+      "focus": "Quad-dominant · calves · core",
+      "time": 46,
+      "ex": [
+        {
+          "n": "Hack Squat",
+          "alt": ["Back Squat", "Pendulum / Machine Squat"],
+          "s": 4,
+          "r": "5–8",
+          "rir": 2,
+          "rest": 150,
+          "m": "Quads",
+          "cue": "Below parallel, controlled 3 s descent. Heels planted, knees track over toes."
+        },
+        {
+          "n": "Bulgarian Split Squat",
+          "alt": ["Walking Lunge", "Front-Foot-Elevated Split Squat"],
+          "s": 3,
+          "r": "8–10 / leg",
+          "rir": 1,
+          "rest": 90,
+          "m": "Quads",
+          "ss": "A",
+          "cue": "Upright torso for quads. Deep — back knee toward the floor."
+        },
+        {
+          "n": "Seated Calf Raise",
+          "alt": ["Standing Calf Raise", "Leg Press Calf Raise"],
+          "s": 3,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 0,
+          "m": "Calves",
+          "ss": "A",
+          "cue": "2 s pause at the bottom stretch. No bouncing off the Achilles."
+        },
+        {
+          "n": "Leg Extension",
+          "alt": ["Sissy Squat", "Reverse Nordic"],
+          "s": 2,
+          "r": "12–15",
+          "rir": 0,
+          "rest": 75,
+          "m": "Quads",
+          "cue": "Last set: 5 full reps, then partials in the bottom half until you stall."
+        },
+        {
+          "n": "45° Back Extension",
+          "alt": ["Seated Leg Curl", "Good Morning"],
+          "s": 3,
+          "r": "10–12",
+          "rir": 1,
+          "rest": 75,
+          "m": "Hamstrings",
+          "cue": "Round the upper back slightly, hinge from the hips — hamstrings and glutes, not lumbar."
+        },
+        {
+          "n": "Cable Crunch",
+          "alt": ["Weighted Decline Sit-up", "Machine Crunch"],
+          "s": 3,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 60,
+          "m": "Core",
+          "cue": "Spine flexes — hips stay fixed. Load it like any other muscle. Abs grow from weight."
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "tag": "DAY 4",
+      "name": "Push B",
+      "focus": "Delt-dominant · upper chest · triceps",
+      "time": 41,
+      "ex": [
+        {
+          "n": "Seated DB Shoulder Press",
+          "alt": ["Standing Barbell OHP", "Machine Shoulder Press"],
+          "s": 4,
+          "r": "6–9",
+          "rir": 2,
+          "rest": 120,
+          "m": "Front Delts",
+          "ss": "A",
+          "cue": "Bench at 80–85°, not vertical. Full lockout, dumbbells to ear level at the bottom."
+        },
+        {
+          "n": "DB Lateral Raise",
+          "alt": ["Cable Lateral Raise", "Lean-Away Cable Raise"],
+          "s": 4,
+          "r": "12–15",
+          "rir": 1,
+          "rest": 0,
+          "m": "Side Delts",
+          "ss": "A",
+          "cue": "Lead with the elbow, stop at shoulder height. Slow the lowering — 3 s."
+        },
+        {
+          "n": "Low-Incline DB Press (15°)",
+          "alt": ["Flat Barbell Bench", "Machine Chest Press"],
+          "s": 3,
+          "r": "8–12",
+          "rir": 1,
+          "rest": 105,
+          "m": "Chest",
+          "ss": "B",
+          "cue": "Shallow angle keeps the chest, not the delts, in charge."
+        },
+        {
+          "n": "Rope Face Pull",
+          "alt": ["Reverse Pec Deck", "Cable Rear Fly"],
+          "s": 2,
+          "r": "15–20",
+          "rir": 2,
+          "rest": 0,
+          "m": "Rear Delts",
+          "ss": "B",
+          "cue": "Same rule as Day 1 — posture work, keep it light."
+        },
+        {
+          "n": "High-to-Low Cable Fly",
+          "alt": ["Pec Deck", "Incline DB Fly"],
+          "s": 2,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 70,
+          "m": "Chest",
+          "cue": "Cross the hands slightly at the front for the sternal fibres."
+        },
+        {
+          "n": "Incline Skull Crusher",
+          "alt": ["Overhead Rope Extension", "Katana Extension"],
+          "s": 3,
+          "r": "8–12",
+          "rir": 1,
+          "rest": 75,
+          "m": "Triceps",
+          "ss": "C",
+          "cue": "Bar to the forehead on a 30° incline — keeps tension in the stretched position."
+        },
+        {
+          "n": "Bodyweight Dip",
+          "alt": ["Rope Pushdown", "Close-Grip Push-up"],
+          "s": 2,
+          "r": "to 2 RIR",
+          "rir": 2,
+          "rest": 0,
+          "m": "Triceps",
+          "ss": "C",
+          "cue": "Upright torso here — this one is for triceps, not chest."
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "tag": "DAY 5",
+      "name": "Pull B",
+      "focus": "Horizontal · mid-back · biceps · core",
+      "time": 43,
+      "ex": [
+        {
+          "n": "Barbell Row (Pendlay-ish)",
+          "alt": ["T-Bar Row", "Chest-Supported Row"],
+          "s": 4,
+          "r": "6–10",
+          "rir": 2,
+          "rest": 120,
+          "m": "Back",
+          "ss": "A",
+          "cue": "Torso ~15° above parallel, pull to the navel. Strict — no hip drive."
+        },
+        {
+          "n": "Hanging Knee Raise",
+          "alt": ["Ab Wheel Rollout", "Reverse Crunch"],
+          "s": 3,
+          "r": "12–15",
+          "rir": 1,
+          "rest": 0,
+          "m": "Core",
+          "ss": "A",
+          "cue": "Slow eccentric. Stop when the pelvis stops curling."
+        },
+        {
+          "n": "Neutral-Grip Lat Pulldown",
+          "alt": ["Single-Arm Lat Pulldown", "Chin-up"],
+          "s": 3,
+          "r": "10–12",
+          "rir": 1,
+          "rest": 100,
+          "m": "Back",
+          "cue": "Let the shoulder rise fully at the top before pulling. Stretch first, contract second."
+        },
+        {
+          "n": "DB Shrug",
+          "alt": ["Trap Bar Shrug", "Cable Shrug"],
+          "s": 2,
+          "r": "12–15",
+          "rir": "0–1",
+          "rest": 70,
+          "m": "Back",
+          "cue": "Straight up, 1 s hold. Traps square off the shoulders in a shirt."
+        },
+        {
+          "n": "Bayesian Cable Curl",
+          "alt": ["Preacher Curl", "Incline DB Curl"],
+          "s": 3,
+          "r": "10–12",
+          "rir": 1,
+          "rest": 70,
+          "m": "Biceps",
+          "ss": "B",
+          "cue": "Stand in front of the cable, arm behind the body. Best stretch in any curl."
+        },
+        {
+          "n": "Cable Rear Delt Fly",
+          "alt": ["Reverse Pec Deck", "Bent-over Rear Fly"],
+          "s": 3,
+          "r": "15–20",
+          "rir": 1,
+          "rest": 0,
+          "m": "Rear Delts",
+          "ss": "B",
+          "cue": "Cross-body cables, pull wide and back. High reps only."
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "tag": "DAY 6",
+      "name": "Legs B",
+      "focus": "Posterior chain · calves · core · short",
+      "time": 36,
+      "ex": [
+        {
+          "n": "Romanian Deadlift",
+          "alt": ["Hip Thrust", "Single-Leg RDL"],
+          "s": 4,
+          "r": "8–10",
+          "rir": 2,
+          "rest": 135,
+          "m": "Hamstrings",
+          "cue": "Push the hips back, bar close, stop when the hamstrings run out — not when the back rounds."
+        },
+        {
+          "n": "Seated Leg Curl",
+          "alt": ["Lying Leg Curl", "Nordic Curl (assisted)"],
+          "s": 3,
+          "r": "10–12",
+          "rir": "0–1",
+          "rest": 90,
+          "m": "Hamstrings",
+          "ss": "A",
+          "cue": "Seated beats lying — hip flexed puts the hamstring in a longer position."
+        },
+        {
+          "n": "Standing Calf Raise",
+          "alt": ["Smith Calf Raise", "Single-Leg Calf Raise"],
+          "s": 3,
+          "r": "10–12",
+          "rir": "0–1",
+          "rest": 0,
+          "m": "Calves",
+          "ss": "A",
+          "cue": "2 s stretch at the bottom, 1 s squeeze at the top. Full range only."
+        },
+        {
+          "n": "Walking Lunge",
+          "alt": ["Leg Press (high foot)", "Step-up"],
+          "s": 2,
+          "r": "12 / leg",
+          "rir": 1,
+          "rest": 90,
+          "m": "Quads",
+          "cue": "Long stride, hips carry it. Two sets and out."
+        },
+        {
+          "n": "Weighted Decline Sit-up",
+          "alt": ["Cable Crunch", "Machine Crunch"],
+          "s": 3,
+          "r": "10–12",
+          "rir": "0–1",
+          "rest": 60,
+          "m": "Core",
+          "ss": "B",
+          "cue": "Plate at the chest. Add load weekly like any lift."
+        },
+        {
+          "n": "Pallof Press",
+          "alt": ["Suitcase Carry", "Side Plank (weighted)"],
+          "s": 2,
+          "r": "12 / side",
+          "rir": 1,
+          "rest": 0,
+          "m": "Core",
+          "ss": "B",
+          "cue": "Anti-rotation. Resist the pull — that is the whole exercise."
+        }
+      ]
+    },
+    {
+      "id": "d7",
+      "tag": "DAY 7",
+      "name": "Recover",
+      "focus": "Full rest · walk · mobility",
+      "rest": true,
+      "lines": [
+        "45–60 min walk, outdoors, no incline chasing. This is your only cardio and it does not touch recovery.",
+        "10 min mobility: couch stretch, thoracic opener, dead hang 3×30 s.",
+        "Sleep is the variable that decides whether Block 01 works. Protect it before you protect anything else.",
+        "Take the week photo — same light, same time, same pose. Scale weight lies week to week; the photo does not."
+      ]
+    }
+  ]
+}
